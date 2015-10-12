@@ -51,6 +51,14 @@ create table Tipo_de_Registo
 	foreign key (T_bid) references Blocos_de_Notas(BN_Id)
 	);
 
+create table Registos
+	(
+	R_id varchar(50),
+	R_tid varchar(50) not null,
+	primary key (R_id, R_tid),
+	foreign key (R_tid) references Tipo_de_Registo(T_id)
+	);
+
 
 insert into Pessoas values ('gffsac@hotmail.com','Gabriel Freire', '1234', 'Quem é o gato?','wat?','27/07/1995');
 insert into Pessoas values ('vultas@lol.com','João Vultos', '1234', 'Quem é o Champ?','huehue?','xx/xx/xxxx');
@@ -65,4 +73,6 @@ insert into Tipo_de_Registo values ('damas',1);
 insert into Tipo_de_Registo values ('gajas',3);
 insert into Tipo_de_Registo values ('champs',2);	
 insert into Tipo_de_Registo values ('madskillz',2);
-insert into Tipo_de_Registo values ('monica',3);
+insert into Tipo_de_Registo values ('strippers',3);
+
+insert into Registos values ('monica','strippers');

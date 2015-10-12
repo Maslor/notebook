@@ -76,6 +76,29 @@
 		echo("</td><tr>\n");
 	}
 	echo("</table>\n");
+
+	$sql = "SELECT * FROM Registos;";
+
+	echo("<p>Query: " . $sql . "</p>\n");
+
+	$result = $connection->query($sql);
+	
+	$num = $result->rowCount();
+
+	echo("<p>$num records retrieved:</p>\n");
+
+	echo("<table border=\"1\">\n");
+	echo("<tr><td>nome_registo</td><td>tipo_registo</td><tr>\n");
+	foreach($result as $row)
+	{
+		echo("<tr><td>");
+		echo($row["R_id"]);
+		echo("</td><td>");
+		echo($row["R_tid"]);
+		echo("</td><tr>\n");
+	}
+	echo("</table>\n");
+
         $connection = null;
 	
 	echo("<p>Connection closed.</p>\n");
