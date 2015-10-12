@@ -1,0 +1,87 @@
+<html>
+<body>
+<?php
+
+	$host="db.ist.utl.pt";	// o MySQL esta disponivel nesta maquina
+	$user="ist178081";	// -> substituir pelo nome de utilizador
+	$password="TagusFTW";	// -> substituir pela password (dada pelo mysql_reset, ou atualizada pelo utilizador)
+	$dbname = $user;	// a BD tem nome identico ao utilizador
+
+	$connection = new PDO("mysql:host=" . $host. ";dbname=" . $dbname, $user, $password, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
+
+	echo("<p>Connected to MySQL database $dbname on $host as user $user</p>\n");
+
+	$sql = "SELECT * FROM Pessoas;";
+
+	echo("<p>Query: " . $sql . "</p>\n");
+
+	$result = $connection->query($sql);
+	
+	$num = $result->rowCount();
+
+	echo("<p>$num records retrieved:</p>\n");
+
+	echo("<table border=\"1\">\n");
+	echo("<tr><td>user_id</td><td>user_name</td><tr>\n");
+	foreach($result as $row)
+	{
+		echo("<tr><td>");
+		echo($row["P_Id"]);
+		echo("</td><td>");
+		echo($row["P_Name"]);
+		echo("</td><tr>\n");
+	}
+	echo("</table>\n");
+
+	$sql = "SELECT * FROM Blocos_de_Notas;";
+
+	echo("<p>Query: " . $sql . "</p>\n");
+
+	$result = $connection->query($sql);
+	
+	$num = $result->rowCount();
+
+	echo("<p>$num records retrieved:</p>\n");
+
+	echo("<table border=\"1\">\n");
+	echo("<tr><td>id_bloco</td><td>dono_bloco</td><tr>\n");
+	foreach($result as $row)
+	{
+		echo("<tr><td>");
+		echo($row["BN_Id"]);
+		echo("</td><td>");
+		echo($row["BN_User"]);
+		echo("</td><tr>\n");
+	}
+	echo("</table>\n");
+	
+		$sql = "SELECT * FROM Tipo_de_Registo;";
+
+	echo("<p>Query: " . $sql . "</p>\n");
+
+	$result = $connection->query($sql);
+	
+	$num = $result->rowCount();
+
+	echo("<p>$num records retrieved:</p>\n");
+
+	echo("<table border=\"1\">\n");
+	echo("<tr><td>nome_tipo</td><td>id_bloco</td><tr>\n");
+	foreach($result as $row)
+	{
+		echo("<tr><td>");
+		echo($row["T_id"]);
+		echo("</td><td>");
+		echo($row["T_bid"]);
+		echo("</td><tr>\n");
+	}
+	echo("</table>\n");
+        $connection = null;
+	
+	echo("<p>Connection closed.</p>\n");
+
+	echo("<p>Test completed successfully.</p>\n");
+
+?>
+</body>
+</html>

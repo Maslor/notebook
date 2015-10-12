@@ -46,6 +46,23 @@ create table Logs
 create table Tipo_de_Registo
 	(
 	T_id varchar(50) not null,
+	T_bid int not null,
+	primary key (T_id),
+	foreign key (T_bid) references Blocos_de_Notas(BN_Id)
+	);
 
-	)
 
+insert into Pessoas values ('gffsac@hotmail.com','Gabriel Freire', '1234', 'Quem é o gato?','wat?','27/07/1995');
+insert into Pessoas values ('vultas@lol.com','João Vultos', '1234', 'Quem é o Champ?','huehue?','xx/xx/xxxx');
+insert into Pessoas values ('ffernandes@saca.com','Filipe Fernandes', '1234', 'Quem cortou o pão?', 'eh?','xx/xx/xxxx');
+
+insert into Blocos_de_Notas values (1,'gffsac@hotmail.com');
+insert into Blocos_de_Notas values (2,'vultas@lol.com');
+insert into Blocos_de_Notas values (3,'ffernandes@saca.com');
+
+insert into Tipo_de_Registo values ('amigos',1);
+insert into Tipo_de_Registo values ('damas',1);
+insert into Tipo_de_Registo values ('gajas',3);
+insert into Tipo_de_Registo values ('champs',2);	
+insert into Tipo_de_Registo values ('madskillz',2);
+insert into Tipo_de_Registo values ('monica',3);
