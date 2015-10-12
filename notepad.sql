@@ -6,10 +6,10 @@ Páginas(bid, trid, name)
 Tipo_de_Registo(bid, trid)
 	bid: FK(Bloco_de_Notas)
 
-Bloco_de_Notas(uid, bid)
+Bloco_de_Notas(BN_Id, BN_User)
 	uid: FK(Pessoas) 
 
-Pessoas(uid, nome, data_nasc, password, safety_question)
+Pessoas(P_Id, P_Name, P_Password, P_SQuestion1, P_SQuestion2, P_Date)
 
 Logs(uid)
 	uid: FK(Pessoas) 
@@ -43,6 +43,14 @@ create table Logs
 	foreign key (L_uid) references Pessoas(P_Id)
 	);
 
+create table Paginas
+	(
+	PG_id varchar(50) not null,
+	PG_bid varchar(50) not null,
+	primary key(PG_id),
+	foreign key (PG_bid) references Blocos_de_Notas(BN_Id)
+	);
+
 create table Tipo_de_Registo
 	(
 	T_id varchar(50) not null,
@@ -67,6 +75,7 @@ insert into Pessoas values ('ffernandes@saca.com','Filipe Fernandes', '1234', 'Q
 insert into Blocos_de_Notas values (1,'gffsac@hotmail.com');
 insert into Blocos_de_Notas values (2,'vultas@lol.com');
 insert into Blocos_de_Notas values (3,'ffernandes@saca.com');
+insert into Blocos_de_Notas values (4,'toni@fake.com');
 
 insert into Tipo_de_Registo values ('amigos',1);
 insert into Tipo_de_Registo values ('damas',1);
