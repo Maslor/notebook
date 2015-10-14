@@ -26,6 +26,12 @@ create table Pessoas
 	primary key (mail)
 	);
 
+create table Tipos_Registo
+	(
+	nome_tipo varchar(100) not null,
+	primary key (nome_tipo)
+	);
+
 create table Registos
 	(
 	nome_registo varchar(50) not null unique,
@@ -36,14 +42,8 @@ create table Registos
 
 create table Paginas
 	(
-	nome_pagina varchar(100) not null,
+	nome_pagina varchar(50) not null,
 	primary key (nome_pagina)
-	);
-
-create table Tipos_Registo
-	(
-	nome_tipo varchar(100) not null,
-	primary key (nome_tipo)
 	);
 
 create table Logs
@@ -82,11 +82,11 @@ create table Loga
 
 create table Editam
 	(
-	nome_pagina varchar(50) not null;
+	nome_pagina varchar(50) not null,
 	mail varchar(100) not null,
 	primary key (nome_pagina, mail),
-	foreign key nome_pagina references Paginas (nome_pagina),
-	foreign key mail references Pessoas (mail)
+	foreign key (nome_pagina) references Paginas (nome_pagina),
+	foreign key (mail) references Pessoas (mail)
 	);
 
 create table Contem_Registos
@@ -95,8 +95,8 @@ create table Contem_Registos
 	nome_registo varchar(50) not null,
 	nome_tipo varchar(50) not null,
 	primary key (nome_pagina, nome_registo, nome_tipo),
-	foreign key nome_tipo references Tipos_Registo (nome_tipo),
-	foreign key nome_pagina references Paginas (nome_pagina),
+	foreign key (nome_tipo) references Tipos_Registo (nome_tipo),
+	foreign key (nome_pagina) references Paginas (nome_pagina),
 	foreign key (nome_registo, nome_tipo) references Registos(nome_registo, nome_tipo)
 	);
 
@@ -105,7 +105,7 @@ create table Pertence_Tipo
 	nome_registo varchar(50) not null,
 	nome_tipo varchar(50) not null,
 	primary key (nome_registo, nome_tipo),
-	foreign key nome_tipo references Tipos_Registo (nome_tipo),
+	foreign key (nome_tipo) references Tipos_Registo (nome_tipo),
 	foreign key (nome_registo, nome_tipo) references Registos(nome_registo, nome_tipo)
 	);
 
@@ -123,21 +123,11 @@ create table Altera_Campo
 	nome_campo varchar(50) not null,
 	nome_tipo varchar(50) not null,
 	data timestamp not null,
-	alteracao_c varchar(255)
+	alteracao_c varchar(255),
 	primary key (nome_campo, nome_tipo, data),
 	foreign key (nome_tipo) references Tipos_Registo (nome_tipo),
 	foreign key (nome_campo, nome_tipo) references Campos (nome_campo, nome_tipo),
 	foreign key (data) references Logs(l_date)	
-	);
-
-create table Altera_Pagina
-	(
-	nome_pagina varchar(50) not null,
-	data datetime not null,
-	alteracao_p varchar(255)
-	primary key (nome_pagina, data)
-	foreign key (nome_pagina) references Paginas (nome_pagina),
-	foreign key (data) references Logs(l_date)
 	);
 
 create table Altera_Registo
@@ -148,7 +138,7 @@ create table Altera_Registo
 	alteracao_r varchar(255) not null,
 	primary key (nome_registo, nome_tipo, data),
 	foreign key (data) references Logs(l_date),
-	foreign key (nome_registo, nome_tipo) references Registos(nome_registo, nome_tipo)
+	foreign key (nome_registo, nome_tipo) references Registos(nome_registo, nome_tipo),
 	foreign key (nome_tipo) references Tipos_Registo(nome_tipo)
 	);
 
@@ -160,5 +150,15 @@ create table Altera_Tipo
 	primary key (data, nome_tipo),
 	foreign key (data) references Logs(l_date),
 	foreign key (nome_tipo) references Tipos_Registo(nome_tipo)
+	);
+
+create table Altera_Pagina
+	(
+	nome_pagina varchar(50) not null,
+	data timestamp not null,
+	alteracao_p varchar(255),
+	primary key (nome_pagina, data),
+	foreign key (nome_pagina) references Paginas (nome_pagina),
+	foreign key (data) references Logs(l_date)
 	);
 
