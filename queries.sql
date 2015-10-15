@@ -8,12 +8,14 @@ insert into Paginas values ('aulas no tecnico');
 insert into Paginas values ('notas provas aval');
 insert into Paginas values ('amigos e companhia');
 insert into Paginas values ('a minha horta');
+insert into Paginas values ('facebook');
 
 insert into Tipos_Registo values ('contas');
 insert into Tipos_Registo values ('aulas');
 insert into Tipos_Registo values ('notas');
 insert into Tipos_Registo values ('amigos');
 insert into Tipos_Registo values ('galinhas');
+insert into Tipos_Registo values ('social');
 
 insert into Registos values ('maria', 'galinhas');
 insert into Registos values ('poedeira', 'galinhas');
@@ -22,6 +24,7 @@ insert into Registos values ('ferias', 'contas');
 insert into Registos values ('EO - Facil', 'notas');
 insert into Registos values ('EO - Facil', 'aulas');
 insert into Registos values ('filipao', 'amigos');
+insert into Registos values ('facebook', 'social');
 
 insert into Campos values ('divida', 'contas');
 insert into Campos values ('lucro', 'contas');
@@ -42,8 +45,14 @@ insert into Editam values ('As minhas contas', 'gffsac@hotmail.com');
 insert into Editam values ('notas provas aval', 'fabricio@hotmail.com');
 insert into Editam values ('amigos e companhia', 'comba@mal.com');
 insert into Editam values ('a minha horta', 'afinfa@naco.com');
+insert into Editam values ('facebook', 'gffsac@hotmail.com');
 
 insert into Contem_Registos values ('amigos e companhia', 'filipao', 'amigos');
+insert into Contem_Registos values ('aulas no tecnico', 'EO - Facil', 'notas');
+insert into Contem_Registos values ('a minha horta', 'maria', 'galinhas');
+insert into Contem_Registos values ('aulas no tecnico', 'facebook', 'social');
+insert into Contem_Registos values ('amigos e companhia', 'facebook', 'social');
+insert into Contem_Registos values ('facebook', 'maria', 'galinhas');
 
 insert into Login values ('2015-08-12 14:23:01', 'sim');
 insert into Login values ('2015-09-03 16:41:23', 'sim');
