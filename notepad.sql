@@ -34,7 +34,7 @@ create table Tipos_Registo
 
 create table Registos
 	(
-	nome_registo varchar(50) not null unique,
+	nome_registo varchar(50) not null,
 	nome_tipo varchar(50) not null,
 	primary key (nome_registo, nome_tipo),
 	foreign key(nome_tipo) references Tipos_Registo (nome_tipo)
