@@ -1,4 +1,3 @@
-
 <?php
 
 include("sigmaConnect.php");
@@ -26,9 +25,8 @@ $server = new sigmaConnect();
 </head>
 <body>
 <?php
+echo "hello";
 $server->connect();
-echo 'helloooooo';
-
 $server->disconnect();
 ?>
 </body>
