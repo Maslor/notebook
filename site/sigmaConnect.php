@@ -58,11 +58,15 @@ class sigmaConnect
     }
 
     public function connect(){
-        $this->setConnection(new PDO("mysql:host=" . $this->getHost(). ";dbname=" . $this->getDbname(), $this->getUser(), $this->getPassword(), array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)));
-        $dbname = $this->getDbname();
-        $host = $this->getHost();
-        $user = $this ->getUser();
-        echo ("<p>Connected to MySQL database $dbname on $host as user $user</p>\n");
+        try {
+            $this->setConnection(new PDO("mysql:host=" . $this->getHost() . ";dbname=" . $this->getDbname(), $this->getUser(), $this->getPassword(), array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)));
+            $dbname = $this->getDbname();
+            $host = $this->getHost();
+            $user = $this->getUser();
+            echo("<p>Connected to MySQL database $dbname on $host as user $user</p>\n");
+        } catch (Exception $e){
+            echo 'Caught exception: ', $e->getMessage(), '\n';
+        }
     }
 
     public function disconnect()
