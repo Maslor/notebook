@@ -1,17 +1,45 @@
+<html>
+<head>
+    <title>Notebook</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+</head>
+<body>
 <?php
 /**
  * Created by PhpStorm.
  * User: Maslor
- * Date: 07/12/15
- * Time: 21:18
+ * Date: 06/12/15
+ * Time: 19:17
  */
 
-$userPagesQuery="SELECT pagecounter, nome FROM pagina WHERE userid='$userid';";
-$userRegsQuery="SELECT typecounter, regcounter, nome FROM registo WHERE userid='$userid';";
-$userRegsTypesQuery="SELECT typecnt, nome FROM tipo_registo WHERE userid='$userid';";
-$sigma->connect();
+include("sigmaConnect.php");
+$userid=$_REQUEST['userid'];
+$sigma = new sigmaConnect();
 
+$userPagesQuery="SELECT pagecounter, nome FROM pagina WHERE userid='$userid';";
+$sigma->connect();
 $sigma->submitSQLquery($userPagesQuery);
 $userPagesResult=$sigma->getResult();
-$userRegsResult=$sigma->getResult();
-$userRegsTypesResult=$sigma->getResult();
+
+echo("<h3>Pages that belong to user $userid:</h3>");
+echo("<h4><a href=\"insertPage.php?userid=$userid\">Insert a new Page</a></h4>");
+echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userPagesResult as $row)
+{
+    echo("<tr>\n");
+    echo("<td><a href=\"PageMenu.php?userid=$userid&page_counter={$row['page_counter']}&page_name={$row['nome']}\">Choose</a></td>\n");
+    echo("<td>{$row['nome']}</td>\n");
+    echo("<td>{$row['page_counter']}</td>\n");
+    echo("</tr>\n");
+}
+echo("</table>\n");
+
+?>
+
+</body>
+</html>
+
