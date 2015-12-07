@@ -12,6 +12,7 @@ class sigmaConnect
     private $user="ist178081";	// -> substituir pelo nome de utilizador
     private $password="TagusFTW";	// -> substituir pela password (dada pelo mysql_reset, ou atualizada pelo utilizador)
     private $connection=null;
+    private $result = null;
 
     public function getHost(){
         return $this->host;
@@ -57,6 +58,16 @@ class sigmaConnect
         $this->connection = $connection;
     }
 
+    public function getResult()
+    {
+        return $this->result;
+    }
+
+    public function setResult($result)
+    {
+        $this->result = $result;
+    }
+
     public function connect(){
         try {
             $this->setConnection(new PDO("mysql:host=" . $this->getHost() . ";dbname=" . $this->getDbname(), $this->getUser(), $this->getPassword(), array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)));
@@ -73,6 +84,51 @@ class sigmaConnect
     {
         $this->setConnection(null);
         echo("<p>Connection closed.</p>\n");
+    }
+
+    private function submitSQLquery($sqlQuery)
+    {
+        $this->setResult($this->getConnection()->query($sqlQuery));
+    }
+
+    public function insertPage($pageOwner, $pageName)
+    {
+        $this->submitSQLquery("INSERT INTO pagina VALUES ('$pageOwner', '$pageName');");
+    }
+
+    public function removePage($pageOwner, $pageName)
+    {
+        $this->submitSQLquery();
+    }
+
+    public function insertRegType()
+    {
+        $this->submitSQLquery();
+    }
+
+    public function removeRegType()
+    {
+        $this->submitSQLquery();
+    }
+
+    public function insertRegTypeField()
+    {
+        $this->submitSQLquery();
+    }
+
+    public function removeRegTypeField()
+    {
+        $this->submitSQLquery();
+    }
+
+    public function insertRegTypeWithFields()
+    {
+        $this->submitSQLquery();
+    }
+
+    public function displayPage()
+    {
+        $this->submitSQLquery();
     }
 }
 ?>
