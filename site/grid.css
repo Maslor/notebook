@@ -1,3 +1,14 @@
+html,
+body {
+    height: 100%;
+    background-color: #333;
+}
+body {
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+
 h4 {
     margin-top: 25px;
 }
@@ -15,6 +26,10 @@ h4 {
     background-color: rgba(86,61,124,.15);
     border: 1px solid #ddd;
     border: 1px solid rgba(86,61,124,.2);
+}
+
+td {
+    padding-right: 15px;
 }
 
 hr {
