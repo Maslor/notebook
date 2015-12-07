@@ -1,14 +1,14 @@
 <html>
-    <head>
-        <title>Notebook</title>
+<head>
+    <title>Notebook</title>
 
-        <!-- Bootstrap core CSS -->
-        <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        <!-- Custom styles for this template -->
-        <link href="grid.css" rel="stylesheet">
-    </head>
-    <body>
+    <!-- Custom styles for this template -->
+    <link href="grid.css" rel="stylesheet">
+</head>
+<body>
 <?php
 /**
  * Created by PhpStorm.
@@ -35,5 +35,5 @@ echo("</table>\n");
 $sigma->disconnect();
 ?>
 
-    </body>
+</body>
 </html>

@@ -37,7 +37,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userPagesResult as $
     echo("</tr>\n");
 }
 echo("</table>\n");
-
+$sigma->disconnect();
 ?>
 
 </body>

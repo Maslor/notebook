@@ -17,14 +17,12 @@
  * Time: 19:17
  */
 
-include("sigmaConnect.php");
-$sigma = new sigmaConnect();
 $userid = $_REQUEST['userid'];
 $OPTIONS = ['Paginas', 'Registos'];
 
 echo("<h3>Menu do utilizador $userid </h3>\n");
-echo("<h4>$OPTIONS[0]<a href=\"userPageMenu.php?userid=$userid\">    Choose</a></h4>\n");
-echo("<h4>$OPTIONS[1]<a href=\"userRegMenu.php?userid=$userid\">    Choose</a></h4>\n");
+echo("<h4>$OPTIONS[0]<a href=\"userPageMenu.php?userid=$userid\">Choose</a></h4>\n");
+echo("<h4>$OPTIONS[1]<a href=\"userRegMenu.php?userid=$userid\">Choose</a></h4>\n");
 
 ?>
 
