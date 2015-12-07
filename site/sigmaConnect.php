@@ -86,49 +86,10 @@ class sigmaConnect
         echo("<p>Connection closed.</p>\n");
     }
 
-    private function submitSQLquery($sqlQuery)
+    public function submitSQLquery($sqlQuery)
     {
         $this->setResult($this->getConnection()->query($sqlQuery));
     }
 
-    public function insertPage($pageOwner, $pageName)
-    {
-        $this->submitSQLquery("INSERT INTO pagina VALUES ('$pageOwner', '$pageName');");
-    }
-
-    public function removePage($pageOwner, $pageName)
-    {
-        $this->submitSQLquery();
-    }
-
-    public function insertRegType()
-    {
-        $this->submitSQLquery();
-    }
-
-    public function removeRegType()
-    {
-        $this->submitSQLquery();
-    }
-
-    public function insertRegTypeField()
-    {
-        $this->submitSQLquery();
-    }
-
-    public function removeRegTypeField()
-    {
-        $this->submitSQLquery();
-    }
-
-    public function insertRegTypeWithFields()
-    {
-        $this->submitSQLquery();
-    }
-
-    public function displayPage()
-    {
-        $this->submitSQLquery();
-    }
 }
 ?>
