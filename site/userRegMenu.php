@@ -20,8 +20,8 @@
 include("sigmaConnect.php");
 $userid=$_REQUEST['userid'];
 
-$userRegsQuery="SELECT typecounter, regcounter, nome FROM registo WHERE userid='$userid';";
-$userRegsTypesQuery="SELECT typecnt, nome FROM tipo_registo WHERE userid='$userid';";
+$userRegsQuery="SELECT typecounter, regcounter, nome FROM registo WHERE userid='$userid' AND ativo=true;";
+$userRegsTypesQuery="SELECT typecnt, nome FROM tipo_registo WHERE userid='$userid' AND ativo=true;";
 
 $sigma = new sigmaConnect();
 
@@ -37,6 +37,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsResult as $r
     echo("<tr>\n");
     echo("<td><a href=\"regMenu.php?userid={$row['nome']}\">Choose</a></td>\n");
     echo("<td>{$row['nome']}</td>\n");
+    echo("<td><a href=\"removeRegistry.php?userid=$userid&regcounter={$row['regcounter']}&typecounter={$row['typecounter']}\">Remove Registry</a></td>\n");
     echo("</tr>\n");
 }
 echo("</table>\n");
@@ -47,6 +48,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsTypesResult 
     echo("<tr>\n");
     echo("<td><a href=\"regTypeMenu.php?userid={$row['nome']}\">Choose</a></td>\n");
     echo("<td>{$row['nome']}</td>\n");
+    echo("<td><a href=\"removeRegType.php?userid=$userid&typecnt={$row['typecnt']}\">Remove Registry Type</a></td>\n");
     echo("</tr>\n");
 }
 echo("</table>\n");

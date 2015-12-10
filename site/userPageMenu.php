@@ -21,7 +21,7 @@ include("sigmaConnect.php");
 $userid=$_REQUEST['userid'];
 $sigma = new sigmaConnect();
 
-$userPagesQuery="SELECT pagecounter, nome FROM pagina WHERE userid='$userid';";
+$userPagesQuery="SELECT pagecounter, nome FROM pagina WHERE userid='$userid' AND ativa=true;";
 $sigma->connect();
 $sigma->submitSQLquery($userPagesQuery);
 $userPagesResult=$sigma->getResult();
@@ -35,7 +35,6 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userPagesResult as $
     echo("<tr>\n");
     echo("<td><a href=\"pageMenu.php?userid=$userid&page_counter={$row['pagecounter']}&page_name={$row['nome']}\">Choose</a></td>\n");
     echo("<td>{$row['nome']}</td>\n");
-    echo("<td>{$row['pagecounter']}</td>\n");
     echo("<td><a href=\"removePage.php?userid=$userid&pagecounter={$row['pagecounter']}\">Remove Page</a></td>\n");
     echo("</tr>\n");
 }

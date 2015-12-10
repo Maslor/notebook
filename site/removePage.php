@@ -13,7 +13,7 @@ $sigma->connect();
 $userid = $_REQUEST['userid'];
 $pagecounter = $_REQUEST['pagecounter'];
 
-$sigma->submitSQLquery("DELETE FROM pagina WHERE userid='$userid' AND pagecounter='$pagecounter'");
+$sigma->submitSQLquery("UPDATE pagina SET ativa=false WHERE userid='$userid' AND pagecounter='$pagecounter'");
 
 $sigma->disconnect();
 
