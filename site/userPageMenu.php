@@ -29,7 +29,7 @@ $userPagesResult=$sigma->getResult();
 
 
 echo("<h3>Pages that belong to user $userid:</h3>");
-echo("<h4><a href=\"insertPage.php?userid=$userid\">Insert a new Page</a></h4>");
+echo("<h4><a href=\"insertPageInterface.php?userid=$userid\">Insert a new Page</a></h4>");
 echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userPagesResult as $row)
 {
     echo("<tr>\n");

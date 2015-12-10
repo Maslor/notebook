@@ -18,22 +18,31 @@
  */
 
 include("sigmaConnect.php");
+$userid=$_REQUEST['userid'];
 $sigma = new sigmaConnect();
 
+$pagesRegistriesQuery="SELECT nome FROM pagina WHERE userid='$userid' AND ativa=true;";
 $sigma->connect();
-$sigma->submitSQLquery("SELECT userid FROM utilizador ORDER BY userid ASC;");
+$sigma->submitSQLquery($userPagesQuery);
+$userPagesResult=$sigma->getResult();
 
-echo("<h3>Choose a User:</h3>");
-echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($sigma->getResult() as $row)
+
+
+echo("<h3>Pages that belong to user $userid:</h3>");
+echo("<h4><a href=\"insertPage.php?userid=$userid\">Insert a new Page</a></h4>");
+echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userPagesResult as $row)
 {
     echo("<tr>\n");
-    echo("<td><a href=\"userMenu.php?userid={$row['userid']}\">Choose</a></td>\n");
-    echo("<td>{$row['userid']}</td>\n");
+    echo("<td><a href=\"pageMenu.php?userid=$userid&page_counter={$row['pagecounter']}&page_name={$row['nome']}\">Choose</a></td>\n");
+    echo("<td>{$row['nome']}</td>\n");
+    echo("<td><a href=\"removePage.php?userid=$userid&pagecounter={$row['pagecounter']}\">Remove Page</a></td>\n");
     echo("</tr>\n");
 }
 echo("</table>\n");
 $sigma->disconnect();
+
 ?>
 
 </body>
 </html>
+
