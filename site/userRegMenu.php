@@ -52,6 +52,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsTypesResult 
     echo("</tr>\n");
 }
 echo("</table>\n");
+echo("<h4><a href=\"insertRegTypeInterface.php?userid=$userid\">Insert a new Registry Type</a></h4>");
 $sigma->disconnect();
 ?>
 
