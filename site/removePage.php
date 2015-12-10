@@ -17,5 +17,6 @@ $sigma->submitSQLquery("DELETE FROM pagina WHERE userid='$userid' AND pagecounte
 
 $sigma->disconnect();
 
-
+header("Location: http://web.ist.utl.pt/ist178081/site/userPageMenu.php?userid=$userid"); /* Redirect browser */
+exit();
 ?>
