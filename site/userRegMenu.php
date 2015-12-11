@@ -41,6 +41,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsResult as $r
     echo("</tr>\n");
 }
 echo("</table>\n");
+echo("<h4><a href=\"insertRegistryInterface.php?userid=$userid\">Insert a new Registry</a></h4>");
 
 echo("<h3>Registry Types that belong to user $userid:</h3>");
 echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsTypesResult as $row)
@@ -53,6 +54,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsTypesResult 
 }
 echo("</table>\n");
 echo("<h4><a href=\"insertRegTypeInterface.php?userid=$userid\">Insert a new Registry Type</a></h4>");
+
 $sigma->disconnect();
 ?>
 

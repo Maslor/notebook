@@ -20,17 +20,22 @@
 include("sigmaConnect.php");
 $userid=$_REQUEST['userid'];
 $page=$_REQUEST['pagecounter'];
-$name=$_REQUEST['nome'];
+$name=$_REQUEST['page_name'];
 $sigma = new sigmaConnect();
 
-$pageRegistriesQuery="SELECT nome, typeid FROM reg_pag WHERE pageid='$pagecounter'";
+$pageRegistriesQuery="select registo.nome from registo cross join reg_pag
+where ativo=true
+	and registo.userid = reg_pag.userid
+    and registo.typecounter = reg_pag.typeid
+    and registo.regcounter = reg_pag.regid
+    and pageid='$pagecounter'";
 $sigma->connect();
 $sigma->submitSQLquery($userPagesQuery);
 $pageRegistriesResult=$sigma->getResult();
 
+echo("<h3>Page $name registries:</h3>");
+echo("<h3>$pageRegistriesResult</h3>");
 
-
-echo("<h3>Page $name registries:");
 echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($pageRegistriesResult as $row)
 {
     echo("<tr>\n");
@@ -39,8 +44,8 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($pageRegistriesResult
     echo("</tr>\n");
 }
 echo("</table>\n");
-$sigma->disconnect();
 
+$sigma->disconnect();
 ?>
 
 </body>
