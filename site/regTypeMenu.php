@@ -22,7 +22,7 @@ $userid=$_REQUEST['userid'];
 $typecnt=$_REQUEST['typecnt'];
 $regTypeName=$_REQUEST['name'];
 
-$regTypeFieldsQuery="SELECT campo.nome FROM campo CROSS JOIN tipo_registo WHERE campo.ativo=true AND tipo_registo.ativo=true AND campo.userid=tipo_registo.userid AND campo.typecnt=tipo_registo.typecnt AND campo.userid='$userid' AND campo.typecnt='$typecnt'";
+$regTypeFieldsQuery="SELECT campo.nome, campocnt FROM campo CROSS JOIN tipo_registo WHERE campo.ativo=true AND tipo_registo.ativo=true AND campo.userid=tipo_registo.userid AND campo.typecnt=tipo_registo.typecnt AND campo.userid='$userid' AND campo.typecnt='$typecnt'";
 $sigma = new sigmaConnect();
 
 $sigma->connect();
@@ -34,7 +34,7 @@ echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($regTypeFieldsResult 
 {
     echo("<tr>\n");
     echo("<td>{$row['nome']}</td>\n");
-    echo("<td><a href=\"removeField.php?userid=$userid&regcounter={$row['regcounter']}&typecounter={$row['typecounter']}\">Remove Field</a></td>\n");
+    echo("<td><a href=\"removeField.php?userid=$userid&typecnt=$typecnt&name=$regTypeName&campocnt={$row['campocnt']}\">Remove Field</a></td>\n");
     echo("</tr>\n");
 }
 echo "</table>\n";
