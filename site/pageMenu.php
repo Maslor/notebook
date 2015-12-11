@@ -19,21 +19,21 @@
 
 include("sigmaConnect.php");
 $userid=$_REQUEST['userid'];
+$page=$_REQUEST['pagecounter'];
+$name=$_REQUEST['nome'];
 $sigma = new sigmaConnect();
 
-$pagesRegistriesQuery="SELECT nome FROM pagina WHERE userid='$userid' AND ativa=true;";
+$pageRegistriesQuery="SELECT nome, typeid FROM reg_pag WHERE pageid='$pagecounter'";
 $sigma->connect();
 $sigma->submitSQLquery($userPagesQuery);
-$userPagesResult=$sigma->getResult();
+$pageRegistriesResult=$sigma->getResult();
 
 
 
-echo("<h3>Pages that belong to user $userid:</h3>");
-echo("<h4><a href=\"insertPage.php?userid=$userid\">Insert a new Page</a></h4>");
-echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userPagesResult as $row)
+echo("<h3>Page $name registries:");
+echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($pageRegistriesResult as $row)
 {
     echo("<tr>\n");
-    echo("<td><a href=\"pageMenu.php?userid=$userid&page_counter={$row['pagecounter']}&page_name={$row['nome']}\">Choose</a></td>\n");
     echo("<td>{$row['nome']}</td>\n");
     echo("<td><a href=\"removePage.php?userid=$userid&pagecounter={$row['pagecounter']}\">Remove Page</a></td>\n");
     echo("</tr>\n");

@@ -29,7 +29,7 @@ foreach($maxIdSeq as $row)
 }
 
 echo $userid, $newIdSeq, $name, $newRegTypeCnt;
-$sigma->submitSQLquery("INSERT INTO sequencia (userid, contador_sequencia, moment) VALUES ('$userid', '$newRegTypeCnt', now())");
+$sigma->submitSQLquery("INSERT INTO sequencia (userid, contador_sequencia, moment) VALUES ('$userid', '$newIdSeq', now())");
 $sigma->submitSQLquery("INSERT INTO tipo_registo (userid, typecnt, nome, idseq, ativo) VALUES ('$userid', '$newRegTypeCnt', '$name', '$newIdSeq', true)");
 
 $sigma->disconnect();
