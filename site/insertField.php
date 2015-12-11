@@ -41,8 +41,8 @@ $sigma->submitSQLquery("INSERT INTO campo (userid, typecnt, campocnt, nome, idse
 
 $sigma->disconnect();
 
-#header("Location: http://web.ist.utl.pt/ist178081/site/userRegMenu.php?userid=$userid"); /* Redirect browser */
-#exit();
+header("Location: http://web.ist.utl.pt/ist178081/site/regTypeMenu.php?userid=$userid&name=$name&typecnt=$typecnt"); /* Redirect browser */
+exit();
 
 ?>
 
