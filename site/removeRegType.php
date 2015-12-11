@@ -13,7 +13,14 @@ $sigma->connect();
 $userid = $_REQUEST['userid'];
 $typecnt = $_REQUEST['typecnt'];
 
-$sigma->submitSQLquery("UPDATE tipo_registo SET ativo=false WHERE userid='$userid' AND typecnt='$typecnt'");
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("UPDATE tipo_registo SET ativo=false WHERE userid='$userid' AND typecnt='$typecnt'");
+    $sigma->commitTransaction();
+}catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 
 $sigma->disconnect();
 

@@ -14,10 +14,25 @@ $userid=$_REQUEST['userid'];
 $name=$_REQUEST['name'];
 $typecnt=$_REQUEST['typecnt'];
 
-$sigma->submitSQLquery("SELECT max(campocnt) as campocnt FROM campo");
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("SELECT max(campocnt) as campocnt FROM campo");
+    $sigma->commitTransaction();
+} catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 $maxFieldCnt=$sigma->getResult();
-$sigma->submitSQLquery("SELECT max(contador_sequencia) as contador_sequencia FROM sequencia");
-$maxIdSeq=$sigma->getResult();
+
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("SELECT max(contador_sequencia) as contador_sequencia FROM sequencia");
+    $maxIdSeq = $sigma->getResult();
+    $sigma->commitTransaction();
+} catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 
 foreach($maxFieldCnt as $row)
 {
@@ -35,9 +50,15 @@ echo $newFieldCnt . "\n";
 echo $name . "\n";
 echo $newIdSeq . "\n";
 
-
-$sigma->submitSQLquery("INSERT INTO sequencia (userid, contador_sequencia, moment) VALUES ('$userid', '$newIdSeq', now())");
-$sigma->submitSQLquery("INSERT INTO campo (userid, typecnt, campocnt, nome, idseq, ativo) VALUES ('$userid', '$typecnt', '$newFieldCnt', '$name', '$newIdSeq', true)");
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("INSERT INTO sequencia (userid, contador_sequencia, moment) VALUES ('$userid', '$newIdSeq', now())");
+    $sigma->submitSQLquery("INSERT INTO campo (userid, typecnt, campocnt, nome, idseq, ativo) VALUES ('$userid', '$typecnt', '$newFieldCnt', '$name', '$newIdSeq', true)");
+    $sigma->commitTransaction();
+}catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 
 $sigma->disconnect();
 

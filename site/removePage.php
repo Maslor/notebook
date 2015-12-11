@@ -13,7 +13,14 @@ $sigma->connect();
 $userid = $_REQUEST['userid'];
 $pagecounter = $_REQUEST['pagecounter'];
 
-$sigma->submitSQLquery("UPDATE pagina SET ativa=false WHERE userid='$userid' AND pagecounter='$pagecounter'");
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("UPDATE pagina SET ativa=false WHERE userid='$userid' AND pagecounter='$pagecounter'");
+    $sigma->commitTransaction();
+}catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 
 $sigma->disconnect();
 
