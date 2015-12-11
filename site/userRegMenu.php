@@ -46,7 +46,7 @@ echo("<h3>Registry Types that belong to user $userid:</h3>");
 echo("<table border=\"0\" cellspacing=\"10\">\n"); foreach($userRegsTypesResult as $row)
 {
     echo("<tr>\n");
-    echo("<td><a href=\"regTypeMenu.php?userid={$row['nome']}\">Choose</a></td>\n");
+    echo("<td><a href=\"regTypeMenu.php?userid=$userid&name={$row['nome']}&typecnt={$row['typecnt']}\">Choose</a></td>\n");
     echo("<td>{$row['nome']}</td>\n");
     echo("<td><a href=\"removeRegType.php?userid=$userid&typecnt={$row['typecnt']}\">Remove Registry Type</a></td>\n");
     echo("</tr>\n");
