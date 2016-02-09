@@ -20,7 +20,14 @@ echo $typecnt . "\n";
 echo $name . "\n";
 echo $campocnt . "\n";
 
-$sigma->submitSQLquery("UPDATE campo SET ativo=false WHERE userid='$userid' AND typecnt='$typecnt' AND campocnt='$campocnt'");
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("UPDATE campo SET ativo=false WHERE userid='$userid' AND typecnt='$typecnt' AND campocnt='$campocnt'");
+    $sigma->commitTransaction();
+}catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 
 $sigma->disconnect();
 

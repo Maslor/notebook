@@ -14,7 +14,14 @@ $userid = $_REQUEST['userid'];
 $typecounter = $_REQUEST['typecounter'];
 $regcounter = $_REQUEST['regcounter'];
 
-$sigma->submitSQLquery("UPDATE registo SET ativo=false WHERE userid='$userid' AND regcounter='$regcounter' AND typecounter='$typecounter';");
+try {
+    $sigma->startTransaction();
+    $sigma->submitSQLquery("UPDATE registo SET ativo=false WHERE userid='$userid' AND regcounter='$regcounter' AND typecounter='$typecounter';");
+    $sigma->commitTransaction();
+}catch (Exception $e) {
+    echo($e->getMessage());
+    $sigma->rollbackTransaction();
+}
 
 $sigma->disconnect();
 

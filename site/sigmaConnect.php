@@ -68,6 +68,21 @@ class sigmaConnect
         $this->result = $result;
     }
 
+    public function startTransaction()
+    {
+        $this->getConnection()->beginTransaction();
+    }
+
+    public function commitTransaction()
+    {
+        $this->getConnection()->commit();
+    }
+
+    public function rollbackTransaction()
+    {
+        $this->getConnection()->rollback();
+    }
+
     public function connect(){
         try {
             $this->setConnection(new PDO("mysql:host=" . $this->getHost() . ";dbname=" . $this->getDbname(), $this->getUser(), $this->getPassword(), array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING)));
